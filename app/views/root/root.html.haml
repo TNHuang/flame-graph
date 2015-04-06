@@ -1,1 +1,16 @@
-%div hello this is the root page
+%h1#header 
+	.red-letter 
+		Flame graph 
+	generator
+.level-0.container.clearfix
+
+.mouseover_message_box.hidden hello this is the message box
+
+.info-container.info.clearfix
+	.full.container
+		%div function:&nbsp&nbsp
+		#code
+
+%form.info-container.info.clearfix
+	%textarea{ :id => "code-str", :name => "file_path", :placeholder => "paste your ruby code here" }
+	%input{:type => "submit", :value => "update flame graph"}

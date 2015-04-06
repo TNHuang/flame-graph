@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+/*html reset*/
+html, body, div, a, li, ul, ol, a, span, h1, input, form, textarea {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	color: inherit;
+	font: inherit;
+	background: none;
+	list-style: none;
+	box-sizing: border-box;
+}
