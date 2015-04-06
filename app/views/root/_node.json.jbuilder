@@ -5,12 +5,16 @@ json.str node.full_name
 json.per per
 json.global_per global_per
 
-json.children node.children.each do |child|
-	if child.total_time/node.total_time > 0.01
-		json.partial! "root/node", {
-			node: child.target,
-			parent_time: node.total_time,
-			global_per: global_per
-		}
-	end
+active_methods = node.children.select do |child|
+	child.total_time/node.total_time > 0.01
+end
+
+parent_time = node.total_time*active_methods.count
+
+json.children active_methods.each do |child|
+	json.partial! "root/node", {
+		node: child.target,
+		parent_time: parent_time,
+		global_per: global_per
+	}
 end

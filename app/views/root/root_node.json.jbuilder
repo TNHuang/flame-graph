@@ -5,17 +5,16 @@ json.per 100
 json.global_per 100
 
 active_methods = @thread.methods.select do |m|
-	m.total_time/@thread.total_time > 0.01
+	m.total_time/@thread.total_time > 0.01 && m.full_name != "RootController#trace"
 end
 
-parent_time = @thread.total_time
+parent_time = @thread.total_time*active_methods.count
 
 json.children active_methods.each do |m|
-	if m.total_time/@thread.total_time > 0.01
-		json.partial! 'root/node', {
-			node: m,
-			parent_time: parent_time,
-			global_per: 100
-		}
-	end
+	json.partial! 'root/node', {
+		node: m,
+		parent_time: parent_time,
+		global_per: 100
+	}
+
 end
