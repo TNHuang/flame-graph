@@ -8,7 +8,7 @@ active_methods = @thread.methods.select do |m|
 	m.total_time/@thread.total_time > 0.01
 end
 
-parent_time = @thread.total_time*active_methods.count
+parent_time = @thread.total_time
 
 json.children active_methods.each do |m|
 	if m.total_time/@thread.total_time > 0.01

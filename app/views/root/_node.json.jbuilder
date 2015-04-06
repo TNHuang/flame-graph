@@ -9,7 +9,7 @@ json.children node.children.each do |child|
 	if child.total_time/node.total_time > 0.01
 		json.partial! "root/node", {
 			node: child.target,
-			parent_time: node.total_time*(node.children.length),
+			parent_time: node.total_time,
 			global_per: global_per
 		}
 	end
