@@ -6,9 +6,9 @@ class RootController < ApplicationController
 	def trace
 		@code = params[:code]
 
-		RubyProf.start
+		@result = RubyProf.profile do
 			eval(@code)
-		@result = RubyProf.stop
+		end
 		
 		@thread = @result.threads[0]
 
